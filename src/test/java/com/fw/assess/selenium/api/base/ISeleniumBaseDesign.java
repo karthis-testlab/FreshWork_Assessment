@@ -10,6 +10,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import com.fw.assess.constants.Browsers;
 import com.fw.assess.utils.Logs;
+import com.fw.assess.utils.Reporter;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -23,15 +24,17 @@ public interface ISeleniumBaseDesign {
 			case CHROME:
 				WebDriverManager.chromedriver().setup();
 				driver = new ChromeDriver();
-				driver.manage().window().maximize();	
+				driver.manage().window().maximize();
+				Reporter.reportLog("PASS", "Successfully launched and maximized chrome browser");
 				Logs.consoleLog("PASS", "Successfully launched and maximized chrome browser");
 				break;
 			case FIREFOX:
 				WebDriverManager.firefoxdriver().setup();
 				driver = new FirefoxDriver();
 				driver.manage().window().maximize();
+				Reporter.reportLog("PASS", "Successfully launched and maximized firefox browser");
 				Logs.consoleLog("PASS", "Successfully launched and maximized firefox browser");
-			default:
+			default:				
 				Logs.consoleLog("WARN", "Currently we're supporting chrome, and firefox browsers");
 			}			
 		} catch (WebDriverException e) {			

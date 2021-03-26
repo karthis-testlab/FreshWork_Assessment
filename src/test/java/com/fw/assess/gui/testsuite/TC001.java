@@ -1,4 +1,4 @@
-package com.fw.assess.selenium.api.base;
+package com.fw.assess.gui.testsuite;
 
 import org.testng.annotations.Test;
 

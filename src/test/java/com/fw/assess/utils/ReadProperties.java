@@ -24,7 +24,7 @@ public class ReadProperties {
 		Properties prop = new Properties();
 		String value = null;
 		try {
-			FileReader file = new FileReader(new File("src/test/resources/ObjectRepositories/Config.properties"));
+			FileReader file = new FileReader(new File("src/test/resources/Config.properties"));
 			prop.load(file);
 			value = prop.getProperty(key);
 		} catch (IOException e) {			
