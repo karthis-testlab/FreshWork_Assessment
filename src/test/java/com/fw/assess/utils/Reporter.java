@@ -46,17 +46,16 @@ public class Reporter extends SeleniumBase {
 			test.get().pass(MarkupHelper.createLabel("[PASSED]: "+ details, ExtentColor.GREEN));			
 		} else if(status.equalsIgnoreCase("FAIL")) {						
 			try {
-				test.get().fail(MarkupHelper.createLabel("[FAILED]: "+ details, ExtentColor.RED)).addScreenCaptureFromPath(new Reporter().getImagePath());
+				test.get().skip(MarkupHelper.createLabel("[FAILED]: "+ details, ExtentColor.AMBER)).addScreenCaptureFromPath(new Reporter().getImagePath());
 			} catch (IOException e) {
 				Logs.consoleLog("FAIL", "Unable to find the image in the given path "+new Reporter().getImagePath());
 			}			
 		} else if(status.equalsIgnoreCase("FATAL")) {
 			try {
-				test.get().skip(MarkupHelper.createLabel("[FATAL]: "+ details, ExtentColor.AMBER)).addScreenCaptureFromPath(new Reporter().getImagePath());
+				test.get().fatal(MarkupHelper.createLabel("[FATAL]: "+ details, ExtentColor.RED)).addScreenCaptureFromPath(new Reporter().getImagePath());
 			} catch (IOException e) {
 				Logs.consoleLog("FAIL", "Unable to find the image in the given path "+new Reporter().getImagePath());
-			}
-			throw new RuntimeException("[FATAL]: "+ details);
+			}			
 		} else if(status.equalsIgnoreCase("SKIP")) {
 			test.get().skip(MarkupHelper.createLabel("[SKIPPED]: "+ details, ExtentColor.YELLOW));
 		}
